@@ -1,29 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Senac</title>
+    <link rel="stylesheet" href="delivery.css">
 </head>
-<body>
-    <h1>Delivery Senac</h1>
-    <script>
-        let pizza1 = {
-            nome: "Calabresa",
-            ingredientes: ["Calabresa", "Cebola", "Muçarela"],
-            valor: 35.00
-        };
-        let pizza2 = {
-            nome: "Frango com Catupiry",
-            ingredientes: ["Frango", "Catupiry", "Muçarela"],
-            valor: 40.00
-        }
 
-        let cardapio = [pizza1, pizza2];
-        console.log("Cardápio da pizzaria Senac:");
+<body>
+    <nav class="navegacao">
+        <ul>
+            <li><a href="./">🍕 Delivery</a></li>
+            <li><a href="#">+ Pizza</a></li>
+            <li><button id="abrirCarrinho">🛒</button></li>
+        </ul>
+    </nav>
+    <ul id="cardapio">
+        <!-- Lista de pizzas -->
+    </ul>
+    <div id="checkout" class="checkout">
+        <button id="fecharCarrinho">✕</button>
+        <h2>Pedido</h2>
+        <ul id="carrinho"></ul>
+    </div>
+    <script>
+        let cardapio = [
+            {
+                foto: "imgs/pizza1.jpg",
+                nome: "Calabresa",
+                ingredientes: ["Calabresa", "Cebola", "Muçarela"],
+                valor: 35.00
+            },
+            {
+                foto: "imgs/pizza2.jpg",
+                nome: "Frango com Catupiry",
+                ingredientes: ["Frango", "Catupiry", "Muçarela"],
+                valor: 40.00
+            }
+        ];
+        const cardapioUl = document.getElementById('cardapio');//<ul id="cardapio"></ul>
+        //zera a lista do cardápio
+        cardapioUl.innerHTML = "";
+        //repetição para exibir a lista de pizzas no cardapio (ul)
         cardapio.forEach((pizza) => {
-            console.log(`${pizza.nome} valor: ${pizza.valor.toFixed(2)}`)
+            //cria um elemento <li> para inserir cada pizza na UL
+            const li = document.createElement('li');
+            //atribui uma classe para a <li> criada
+            li.className = "pizza";
+            //cria um elemento <img> para adicionar a imagem da pizza
+            const img = document.createElement('img');
+            //atribui a foto da pizza para o 'src' da img
+            img.src = pizza.foto
+            //cria uma div para exibir os ingredientes da pizza
+            const ingredientesDiv = document.createElement('div');
+            ingredientesDiv.innerHTML = `(${pizza.ingredientes.join(' | ')})`;
+            //atribui uma classe para os ingredientes
+            ingredientesDiv.className = "ingredientes";
+            //cria um botão para adicionar a pizza ao carrinho
+            const button = document.createElement('button');
+            //texto para o botão comprar
+            button.textContent = "COMPRAR 🍕";
+            //montar card da pizza
+            li.appendChild(img);
+            li.append(`${pizza.nome} - R$ ${pizza.valor.toFixed(2)}`);
+            li.appendChild(ingredientesDiv);
+            li.appendChild(button);
+            //adiciona a <li> dentro da <ul>
+            cardapioUl.appendChild(li);            
         });
     </script>
 </body>
+
 </html>
