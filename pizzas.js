@@ -1,7 +1,7 @@
 
 let cardapio = [
     {
-        foto: "imgs/Pizza4.jpg",
+        foto: "imgs/Pizza5.jpg",
         nome: "Calabresa",
         ingredientes: ["Calabresa", "Cebola", "Muçarela"],
         valor: 35.00
